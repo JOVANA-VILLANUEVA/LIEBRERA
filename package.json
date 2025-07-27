@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon sever.js"
   },
   "keywords": [],
   "author": "Alexis Felipe Castro Rodriguez, Jasiel Casillas Vasquez, Ricardo Jonathan Acosta Marin, Blanca Jovana Villanueva Luevano, Jose Eduardo Orenday Diosdado",
