@@ -6,10 +6,10 @@ function autenticar(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.usuario = decoded; // Añade los datos del usuario al request
+        req.usuario = decoded; // Añade los datos del usuario
         next();
     } catch (ex) {
-        res.status(400).send({ mensaje: 'TOKEN NO VALIDO' });
+        res.status(404).send({ mensaje: 'TOKEN NO VALIDO' });
     }
 }
 

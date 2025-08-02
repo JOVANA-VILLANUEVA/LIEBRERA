@@ -13,7 +13,7 @@ exports.registro = async (req, res) => {
 
         res.status(201).send({ mensaje: 'Usuario registrado', usuario: { id: usuario._id, email } });
     } catch (error) {
-        res.status(500).send({ mensaje: 'Error en el registro' });
+        res.status(404).send({ mensaje: 'Error en el registro' });
     }
 };
 
@@ -21,10 +21,10 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const usuario = await usuarioModel.findOne({ email });
-        if (!usuario) return res.status(401).send({ mensaje: 'Credenciales inválidas' });
+        if (!usuario) return res.status(404).send({ mensaje: 'Credenciales inválidas' });
 
         const esValida = await bcrypt.compare(password, usuario.password);
-        if (!esValida) return res.status(401).send({ mensaje: 'Credenciales inválidas' });
+        if (!esValida) return res.status(404).send({ mensaje: 'Credenciales inválidas' });
 
         const token = jwt.sign(
             { id: usuario._id, email },
@@ -34,6 +34,6 @@ exports.login = async (req, res) => {
 
         res.status(200).send({ mensaje: 'Sesión iniciada', token });
     } catch (error) {
-        res.status(500).send({ mensaje: 'Error en el login' });
+        res.status(404).send({ mensaje: 'Error en el login' });
     }
 };
